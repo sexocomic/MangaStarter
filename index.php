@@ -1,39 +1,12 @@
 <?php
 
-/**
- * Laravel - A PHP Framework For Web Artisans
- *
- * @package  Laravel
- * @author   Taylor Otwell <taylor@laravel.com>
- */
+/* mymangacms_base inside public folder	*/
+require __DIR__.'/mymangacms_base/bootstrap/autoload.php';
+$app = require_once __DIR__.'/mymangacms_base/bootstrap/app.php';
 
-/*
-|--------------------------------------------------------------------------
-| Register The Auto Loader
-|--------------------------------------------------------------------------
-|
-| Composer provides a convenient, automatically generated class loader for
-| our application. We just need to utilize it! We'll simply require it
-| into the script here so that we don't have to worry about manual
-| loading any of our classes later on. It feels nice to relax.
-|
-*/
-
-require __DIR__.'/bootstrap/autoload.php';
-
-/*
-|--------------------------------------------------------------------------
-| Turn On The Lights
-|--------------------------------------------------------------------------
-|
-| We need to illuminate PHP development, so let us turn on the lights.
-| This bootstraps the framework and gets it ready for use, then it
-| will load up this application so that we can run it and send
-| the responses back to the browser and delight our users.
-|
-*/
-
-$app = require_once __DIR__.'/bootstrap/app.php';
+/* mymangacms_base in the parent folder */
+//require __DIR__.'/../mymangacms_base/bootstrap/autoload.php';
+//$app = require_once __DIR__.'/../mymangacms_base/bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +19,11 @@ $app = require_once __DIR__.'/bootstrap/app.php';
 | and wonderful application we have prepared for them.
 |
 */
+
+// set the public path to this directory
+$app->bind('path.public', function() {
+    return __DIR__;
+});
 
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
